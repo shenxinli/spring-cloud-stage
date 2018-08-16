@@ -1,0 +1,34 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+spring:
+  application:
+    name: eureka-server
+  boot:
+    admin:
+      client:
+        username: "root"       #These two are needed so that the client
+        password: "123456"   #can register at the protected server api
+        url: http://localhost:8888/admin # 逗号分开Spring Boot Admin服务器URL的有序列表以注册
+        instance:
+          service-url: http://${spring.cloud.client.ip-address}:${server.port}
+          health-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+          management-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+logging:
+  file: "target/eureka-server.log"

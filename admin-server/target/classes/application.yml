@@ -1,0 +1,122 @@
+---
+info:
+  scm-url: "https://github.com/spring-projects/spring-boot/spring-boot-starter-parent/spring-cloud-stage/admin-server"
+  build-url: "http://travis-ci.org/@env.TRAVIS_REPO_SLUG@/builds/@env.TRAVIS_BUILD_ID@"
+
+logging:
+  file: "target/boot-admin-sample-reactive.log"
+ # level: debug
+
+eureka:   #<1>
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    homePageUrlPath: ${server.context-path:}
+    statusPageUrlPath: ${eureka.instance.homePageUrlPath}/actuator/info      #状态地址
+    healthCheckUrlPath: ${eureka.instance.homePageUrlPath}/actuator/health   #健康检查地址
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+    region: eureka-zone-1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+spring:
+  application:
+    name: admin-server
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888/admin # 逗号分开Spring Boot Admin服务器URL的有序列表以注册
+        enabled: true # 启用Spring Boot Admin Client 默认true
+        api-path: instances # 管理服务器上的注册端点的Http路径
+        period: 10000ms #重复注册的间隔（以毫秒为单位
+        connect-timeout: 5000ms #连接注册超时（以毫秒为单位）
+        read-timeout: 5000ms #读取注册超时（以毫秒为单位）
+        auto-registration: true #如果设置为true，则应用程序准备就绪后，将自动调度定期任务以注册应用程序
+        auto-deregistration: true #当关闭上下文时，切换到在Spring Boot Admin服务器上启用自动注销。如果值未设置，则在检测到正在运行的CloudPlatform时，该功能处于活动状态。
+        register-once: true #如果设置为true，则客户端将仅针对一个管理服务器进行注册（按照定义的顺序spring.boot.admin.instance.url）; 如果该管理服务器发生故障，将自动注册到下一个管理服务器。如果为false，将针对所有管理服务器进行注册。
+        #instance:
+          #metadata:
+          #health-url: #Health-url注册。如果可访问的URL不同（例如Docker），可以重写。在注册表中必须是唯一的。
+          #management-url: #管理网址注册。如果可访问的URL不同（例如Docker），可以重写。
+          #management-base-url: #计算要注册的管理URL的基础URL。该路径是在运行时推断的，并附加到基础URL。
+          #service-url: #服务网址注册。如果可访问的URL不同（例如Docker），可以重写。
+          #service-base-url: #计算要注册的服务url的基本URL。该路径是在运行时推断的，并附加到基础URL。
+          #name: #名称注册。
+          #prefer-ip: false
+      context-path: /admin #上下文路径为管理服务器的静态资产和API提供服务的路径前缀。相对于Dispatcher-Servlet。
+      monitor:
+        connect-timeout: 2000ms #在查询应用程序的状态和信息时，以毫秒为单位连接超时。
+        period: 10000ms #以毫秒为单位的时间间隔，用于更新具有过期状态信息的应用程序的状态。
+        status-lifetime: 10000ms #应用程序状态的生命周期，以ms为单位。在生命周期到期之前，应用程序/运行状况端点将不会被查询。
+        read-timeout: 20000ms #查询应用程序的状态和信息时，以毫秒为单位读取超时值。
+      #metadata-keys-to-sanitize: ".*password$",".*secret$",".*key$",".*$token$",".*credentials.*",".*vcap_services$" #匹配这些正则表达式模式的键的元数据值将在所有json输出中被清理。
+      #probed-endpoints: "health","env","metrics","httptrace:trace","threaddump:dump","jolokia","info","logfile","refresh","flyway","liquibase","heapdump","loggers","auditevents" #对于Spring Boot 1.x客户端应用程序SBA使用OPTIONS请求探测指定的端点。如果路径与id不同，您可以将其指定为id：path（例如health：ping）。
+      #instance-proxy:
+       # ignored-headers: "Cookie","Set-Cookie","Authorization" #向客户端发送请求时不会转发标头。
+      hazelcast:
+        enabled: true #启用Hazelcast支持
+      notify:
+        mail:
+          to: sxl@chinawaytek.com
+          from: service@chinawaytek.com
+          template: classpath:/META-INF/admin-server/mail/template.html
+          additional-properties:
+            test_propertie: test_propertie
+          base-url: ${spring.boot.admin.client.url}
+        #event-store: spring-boot-admin-event-store  用于存储事件的Hazelcast地图的名称
+  profiles:
+    active:
+      - secure
+  mail:
+    host: smtp.exmail.qq.com
+    # port: 465
+    password: Chinaway2014
+    username: service@chinawaytek.com
+server:
+  port: 8888
+  # address:
+---
+spring:
+  profiles: dev
+  boot:
+    admin:
+      ui:
+        cache:
+          no-cache: true
+        template-location: file://E:\\spring-cloud-stage\\admin-server/../../spring-boot-admin-server-ui/target/dist/
+        resource-locations: file://E:\\spring-cloud-stage\\admin-server/../../spring-boot-admin-server-ui/target/dist/
+        cache-templates: false
+
+---
+spring:
+  profiles: insecure
+
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: "root"
+      password: "123456"
+  boot:
+    admin:
+      client:
+        username: "root"       #These two are needed so that the client
+        password: "123456"   #can register at the protected server api
+        instance:
+          service-url: http://${spring.cloud.client.ip-address}:${server.port}
+          metadata:
+            user.name: "root"         #These two are needed so that the server
+            user.password: "123456"   #can access the protected client endpoints
+          health-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
+          management-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator
