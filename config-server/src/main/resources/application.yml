@@ -19,7 +19,7 @@ spring:
       server:
         git:
           uri: https://github.com/shenxinli/config-repo
-          search-paths: ${profile}
+          search-paths: "{profile}"
           username: ${security.git.username}
           password: ${security.git.password}
           basedir: /data
