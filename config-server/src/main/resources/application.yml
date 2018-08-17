@@ -18,7 +18,7 @@ spring:
       label: master
       server:
         git:
-          uri: https://github.com/shenxinli/config-repo/
+          uri: https://github.com/shenxinli/config-repo
           search-paths: ${profile}
           username: ${security.git.username}
           password: ${security.git.password}

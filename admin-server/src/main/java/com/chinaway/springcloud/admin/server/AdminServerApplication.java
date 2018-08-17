@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.*;
 import org.springframework.http.HttpMethod;
@@ -24,8 +25,7 @@ import org.springframework.security.web.authentication.SavedRequestAwareAuthenti
 import java.time.Duration;
 import java.util.List;
 
-@Configuration
-@EnableAutoConfiguration
+@SpringBootApplication
 @EnableAdminServer
 @ComponentScan("com.chinaway")
 @EnableDiscoveryClient
