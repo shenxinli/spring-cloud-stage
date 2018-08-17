@@ -3,7 +3,7 @@ server:
 ---
 info:
   scm-url: "@scm.url@"
-  build-url: "http://travis-ci.org/@env.TRAVIS_REPO_SLUG@/builds/@env.TRAVIS_BUILD_ID@"
+  build-url: "https://github.com/shenxinli/spring-cloud-stage"
 
 logging:
   file: "target/admin-server.log"
@@ -35,7 +35,7 @@ spring:
   cloud:
     config:
       name: bootstrap,application
-      profile: ${spring.application.name}
+      profile: dev
       label: master
       discovery:
         enable: true
