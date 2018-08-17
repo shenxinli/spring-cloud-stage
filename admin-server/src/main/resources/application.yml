@@ -1,10 +1,12 @@
+server:
+  port: 8888
 ---
 info:
   scm-url: "@scm.url@"
   build-url: "http://travis-ci.org/@env.TRAVIS_REPO_SLUG@/builds/@env.TRAVIS_BUILD_ID@"
 
 logging:
-  file: "target/boot-admin-sample-reactive.log"
+  file: "target/admin-server.log"
  # level: debug
 
 eureka:   #<1>
@@ -15,10 +17,10 @@ eureka:   #<1>
     statusPageUrlPath: ${eureka.instance.homePageUrlPath}/actuator/info      #状态地址
     healthCheckUrlPath: ${eureka.instance.homePageUrlPath}/actuator/health   #健康检查地址
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-        defaultZone: http://root:123456@localhost:8761/eureka/
+        defaultZone: http://${security.user.name}:${security.user.password}@${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
     region: eureka-zone-1
 
 management:
@@ -30,12 +32,18 @@ management:
     health:
       show-details: ALWAYS
 spring:
-  application:
-    name: admin-server
+  cloud:
+    config:
+      name: bootstrap,application
+      profile: ${spring.application.name}
+      label: master
+      discovery:
+        enable: true
+        serviceId: config-server 
   boot:
     admin:
       client:
-        url: http://localhost:8888/admin # 逗号分开Spring Boot Admin服务器URL的有序列表以注册
+        url: http://${spring.cloud.admin.host.name}:${spring.cloud.admin.host.port}/admin # 逗号分开Spring Boot Admin服务器URL的有序列表以注册
         enabled: true # 启用Spring Boot Admin Client 默认true
         api-path: instances # 管理服务器上的注册端点的Http路径
         period: 10000ms #重复注册的间隔（以毫秒为单位
@@ -82,9 +90,8 @@ spring:
     # port: 465
     password: Chinaway2014
     username: service@chinawaytek.com
-server:
-  port: 8888
   # address:
+ 
 ---
 spring:
   profiles: dev
@@ -106,17 +113,17 @@ spring:
   profiles: secure
   security:
     user:
-      name: "root"
-      password: "123456"
+      name: ${security.user.name}
+      password: ${security.user.password}
   boot:
     admin:
       client:
-        username: "root"       #These two are needed so that the client
-        password: "123456"   #can register at the protected server api
+        username: ${security.user.name}       #These two are needed so that the client
+        password: ${security.user.password}   #can register at the protected server api
         instance:
           service-url: http://${spring.cloud.client.ip-address}:${server.port}
           metadata:
-            user.name: "root"         #These two are needed so that the server
-            user.password: "123456"   #can access the protected client endpoints
+            user.name: ${security.user.name}         #These two are needed so that the server
+            user.password: ${security.user.password}   #can access the protected client endpoints
           health-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator/health
           management-url: http://${spring.cloud.client.ip-address}:${server.port}/actuator

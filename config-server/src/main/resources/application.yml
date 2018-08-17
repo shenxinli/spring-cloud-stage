@@ -1,34 +1,35 @@
 server:
   port: 8787
 
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${security.user.name}:${security.user.password}@${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
+
 spring:
-  application:
-    name: config-server
   cloud:
     config:
       enabled: true
-      name: application,base
-      label: {application}
+      name: bootstrap,application
+      label: master
       server:
         git:
-          uri: https://github.com/shenxinli/spring-cloud-stage.git
-          username: shenxinli
-          password: sxl2014
+          uri: https://github.com/shenxinli/config-repo/
+          search-paths: ${profile}
+          username: ${security.git.username}
+          password: ${security.git.password}
           basedir: /data
-  profiles:
-    active: subversion
- 
-logging:
-  levels:
-    org.springframework.boot.env.PropertySourcesLoader: TRACE
-    org.springframework.cloud.config.server: DEBUG
-eureka:
-  client:
-    service-url:
-      defaultZone: http://39.108.48.247:8761/eureka
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
 management:
-  security:
-    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+logging:
+  file: "target/config-server.log"

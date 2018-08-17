@@ -1,0 +1,17 @@
+security:
+  user:
+    name: "root"
+    password: "123456"
+spring:
+  application:
+    name: admin-server
+  cloud:
+    eureka:
+      server:
+        host:
+          name: localhost
+          port: 8761
+    admin:
+      host:
+        name: localhost
+        port: 8888
