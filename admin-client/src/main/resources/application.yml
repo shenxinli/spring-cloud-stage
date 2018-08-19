@@ -1,0 +1,35 @@
+server:
+  port: 9001
+
+# tag::configuration-eureka[]
+eureka:  #<1>
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    statusPageUrlPath: /actuator/info      #状态地址
+    healthCheckUrlPath: /actuator/health   #健康检查地址
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #<2>
+  endpoint:
+    health:
+      show-details: ALWAYS
+# end::configuration-eureka[]
+      
+spring:
+  cloud:
+    config:
+      name: application
+      label: dev
+      profile: ${spring.application.name}
+      uri: http://${spring.cloud.config.host.name:localhost}:${spring.cloud.config.host.port:8787}/
+
+logging:
+  file: "target/${spring.application.name}.log"
+demo:
+  value: before

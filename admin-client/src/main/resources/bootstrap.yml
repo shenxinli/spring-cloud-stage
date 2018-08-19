@@ -4,7 +4,7 @@ security:
     password: "123456"
 spring:
   application:
-    name: config-server
+    name: admin-clicent
   cloud:
     eureka:
       server:
@@ -20,4 +20,4 @@ spring:
         name: 192.168.1.66
         port: 8787
 logging:
-  file: "target/${spring.application.name}.log"        
+  file: "target/${spring.application.name}.log"

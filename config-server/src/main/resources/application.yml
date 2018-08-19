@@ -1,27 +1,31 @@
+info:
+  scm-url: "@scm.url@"
+  build-url: "https://github.com/shenxinli/spring-cloud-stage"
+  
 server:
   port: 8787
 
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}
+    homePageUrlPath: ${server.context-path:}
+    statusPageUrlPath: /actuator/info      #状态地址
+    healthCheckUrlPath: /actuator/health   #健康检查地址
   client:
-    registerWithEureka: true
-    fetchRegistry: true
     serviceUrl:
-      defaultZone: http://${security.user.name}:${security.user.password}@${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
+      defaultZone: http://${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
 
+---
 spring:
   cloud:
     config:
-      enabled: true
-      name: bootstrap,application
-      label: master
       server:
         git:
           uri: https://github.com/shenxinli/config-repo
-          search-paths: "{application}"
-          username: ${security.git.username}
-          password: ${security.git.password}
+          search-paths: "{profile}"
+          username: shenxinli
+          password: chinaway2014
           force-pull: true
           basedir: /data
 management:
@@ -32,5 +36,3 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-logging:
-  file: "target/config-server.log"

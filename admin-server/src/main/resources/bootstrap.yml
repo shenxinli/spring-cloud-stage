@@ -9,9 +9,13 @@ spring:
     eureka:
       server:
         host:
-          name: localhost
+          name: 192.168.1.66
           port: 8761
     admin:
       host:
-        name: localhost
+        name: 192.168.1.66
         port: 8888
+    config:
+      host:
+        name: 192.168.1.66
+        port: 8787

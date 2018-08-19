@@ -1,0 +1,19 @@
+server:
+  port: 8761
+
+---
+spring:
+  cloud:
+    config:
+      name: application,datasource
+      label: dev
+      profile: ${spring.application.name}
+      uri: http://${spring.cloud.config.host.name:localhost}:${spring.cloud.config.host.port:8787}/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
