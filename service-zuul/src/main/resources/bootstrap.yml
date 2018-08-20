@@ -22,7 +22,9 @@ spring:
       name: application,datasource
       label: dev
       profile: ${spring.application.name}
-      uri: ${CONFIG_SERVICE_URL:http://localhost:8888}
+      discovery:
+        enabled: true
+        service-id: config-server
       
 zuul:
   routes:
