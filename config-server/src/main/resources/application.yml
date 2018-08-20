@@ -18,13 +18,15 @@ eureka:
 spring:
   cloud:
     config:
+      enabled: true
+      name: boorstrip,application,demo
+      label: dev
       server:
         git:
           uri: https://github.com/shenxinli/config-repo
           search-paths: "{profile}"
           username: shenxinli
           password: chinaway2014
-          force-pull: true
           basedir: /data
 management:
   endpoints:
