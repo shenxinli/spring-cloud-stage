@@ -1,9 +1,28 @@
 EUREKA_SERVICE_URL: http://localhost:8761
 ADMIN_SERVICE_URL: http://localhost:8787
 CONFIG_SERVICE_URL: http://localhost:8888
+server:
+  port: 8761
+  
 spring:
   application:
     name: eureka-server
+  cloud:
+    config:
+      name: application,datasource
+      label: dev
+      profile: ${spring.application.name}
+      uri: ${CONFIG_SERVICE_URL:http://localhost:8888}
+      
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+      
 security:
   user:
     name: "root"
