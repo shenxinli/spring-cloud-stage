@@ -13,7 +13,6 @@
 		<module>eureka-server</module>
 		<module>admin-server</module>
 		<module>config-server</module>
-		<module>admin-client</module>
 		<module>service-hi</module>
 		<module>service-ribbon</module>
 		<module>serice-feign</module>
