@@ -9,7 +9,7 @@ eureka:  #<1>
     healthCheckUrlPath: /actuator/health   #健康检查地址
   client:
     serviceUrl:
-      defaultZone: http://${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
 
 management:
   endpoints:
@@ -24,12 +24,10 @@ management:
 spring:
   cloud:
     config:
-      name: application
+      name: bootstrap,application,demo
       label: dev
       profile: ${spring.application.name}
-      uri: http://${spring.cloud.config.host.name:localhost}:${spring.cloud.config.host.port:8787}/
+      uri: ${CONFIG_SERVICE_URL:http://localhost:8787}
 
 logging:
   file: "target/${spring.application.name}.log"
-demo:
-  value: before

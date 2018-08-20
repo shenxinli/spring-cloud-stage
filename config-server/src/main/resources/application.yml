@@ -8,13 +8,11 @@ server:
 eureka:
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    hostname: ${spring.cloud.client.ip-address}
-    homePageUrlPath: ${server.context-path:}
     statusPageUrlPath: /actuator/info      #状态地址
     healthCheckUrlPath: /actuator/health   #健康检查地址
   client:
     serviceUrl:
-      defaultZone: http://${spring.cloud.eureka.server.host.name}:${spring.cloud.eureka.server.host.port}/eureka/
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
 
 ---
 spring:
