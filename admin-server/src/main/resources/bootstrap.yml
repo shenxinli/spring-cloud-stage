@@ -1,21 +1,12 @@
+EUREKA_SERVICE_URL: http://localhost:8761
+ADMIN_SERVICE_URL: http://localhost:8888
+CONFIG_SERVICE_URL: http://localhost:8787
+spring:
+  application:
+    name: admin-server
 security:
   user:
     name: "root"
     password: "123456"
-spring:
-  application:
-    name: admin-server
-  cloud:
-    eureka:
-      server:
-        host:
-          name: 192.168.1.66
-          port: 8761
-    admin:
-      host:
-        name: 192.168.1.66
-        port: 8888
-    config:
-      host:
-        name: 192.168.1.66
-        port: 8787
+logging:
+  file: "target/${spring.application.name}.log"

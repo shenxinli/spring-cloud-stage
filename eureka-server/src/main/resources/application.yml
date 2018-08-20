@@ -8,7 +8,7 @@ spring:
       name: application,datasource
       label: dev
       profile: ${spring.application.name}
-      uri: http://${spring.cloud.config.host.name:localhost}:${spring.cloud.config.host.port:8787}/
+      uri: ${CONFIG_SERVICE_URL:http://localhost:8787}
 management:
   endpoints:
     web:
