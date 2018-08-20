@@ -3,7 +3,6 @@ spring:
   profiles:
     active:
       - secure
-
 ---
 spring:
   profiles: insecure
