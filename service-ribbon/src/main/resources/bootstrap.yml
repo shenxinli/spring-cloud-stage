@@ -1,0 +1,12 @@
+EUREKA_SERVICE_URL: http://localhost:8761
+ADMIN_SERVICE_URL: http://localhost:8888
+CONFIG_SERVICE_URL: http://localhost:8787
+spring:
+  application:
+    name: service-ribbon
+security:
+  user:
+    name: "root"
+    password: "123456"
+logging:
+  file: "target/${spring.application.name}.log"
