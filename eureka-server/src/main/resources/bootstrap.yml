@@ -7,14 +7,6 @@ server:
 spring:
   application:
     name: eureka-server
-  cloud:
-    config:
-      name: application,datasource
-      label: dev
-      profile: ${spring.application.name}
-      discovery:
-        enabled: true
-        service-id: config-server
       
 management:
   endpoints:
