@@ -19,10 +19,15 @@ public class ServiceHiApplication {
 
     @Value("${server.port}")
     String port;
+    
+    @Value("${info.scm-url}")
+    String scm_url;
 
     @RequestMapping("/hi")
     public String home(@RequestParam(value = "name", defaultValue = "shenxinli") String name) {
-        return "hi " + name + " ,i am from port:" + port;
+    	StringBuilder sb = new StringBuilder("hi " + name + " ,i am from port:" + port);
+    	sb.append("<br/>" + scm_url);
+        return sb.toString();
     }
     
 }

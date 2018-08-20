@@ -1,5 +1,5 @@
 server:
-  port: 8888
+  port: 8787
 
 # tag::configuration-eureka[]
 eureka:   #<1>
@@ -27,7 +27,7 @@ spring:
       name: application,datasource
       label: dev
       profile: ${spring.application.name}
-      uri: ${CONFIG_SERVICE_URL:http://localhost:8787}
+      uri: ${CONFIG_SERVICE_URL:http://localhost:8888}
 ---
 spring:
   profiles:

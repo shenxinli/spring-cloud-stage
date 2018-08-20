@@ -3,7 +3,7 @@ info:
   build-url: "https://github.com/shenxinli/spring-cloud-stage"
   
 server:
-  port: 8787
+  port: 8888
 
 eureka:
   instance:

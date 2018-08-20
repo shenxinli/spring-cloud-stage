@@ -1,6 +1,6 @@
 EUREKA_SERVICE_URL: http://localhost:8761
-ADMIN_SERVICE_URL: http://localhost:8888
-CONFIG_SERVICE_URL: http://localhost:8787
+ADMIN_SERVICE_URL: http://localhost:8787
+CONFIG_SERVICE_URL: http://localhost:8888
 spring:
   application:
     name: service-ribbon

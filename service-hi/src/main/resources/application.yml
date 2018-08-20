@@ -9,3 +9,10 @@ eureka:   #<1>
   client:
     serviceUrl:
       defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+
+spring:
+  cloud:
+    config:
+      name: application,bootstrap
+      profile: ${spring.application.name}
+      url: ${CONFIG_SERVICE_URL:http://localhost:8888}      

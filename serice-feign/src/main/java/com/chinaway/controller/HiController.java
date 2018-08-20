@@ -15,7 +15,7 @@ public class HiController {
 
     @GetMapping(value = "/hi")
     public String sayHi(@RequestParam(name="name", defaultValue="shenxinli") String name) {
-        return hiService.doService(name);
+        return hiService.doService(name + "[feign]");
     }
     
 }

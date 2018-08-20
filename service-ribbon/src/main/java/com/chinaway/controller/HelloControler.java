@@ -15,7 +15,7 @@ public class HelloControler {
 
     @GetMapping(value = "/hi")
     public String hi(@RequestParam(value = "name", defaultValue="shenxinli") String name) {
-        return hiService.doService( name );
+        return hiService.doService(name + "[ribbon]");
     }
     
 }
