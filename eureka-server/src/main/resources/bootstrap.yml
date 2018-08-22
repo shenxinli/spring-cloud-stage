@@ -1,6 +1,14 @@
+EUREKA_SERVICE_URL: http://172.18.170.101:8761
 server:
   port: 8761
-  
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_SERVICE_URL:localhost}/eureka/
+
 spring:
   application:
     name: eureka-server
