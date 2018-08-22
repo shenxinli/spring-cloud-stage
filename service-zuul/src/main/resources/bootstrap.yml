@@ -7,7 +7,7 @@ spring:
   cloud:
     config:
       name: application,datasource
-      label: dev
+      label: master
       profile: ${spring.application.name}
       discovery:
         enabled: true
