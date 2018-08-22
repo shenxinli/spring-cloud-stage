@@ -15,9 +15,6 @@ eureka:
 spring:
   application:
     name: eureka-server
-  cloud:
-    inetutils:
-      preferred-networks: 172.18.170.
 management:
   endpoints:
     web:
