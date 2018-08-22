@@ -7,6 +7,7 @@ spring:
     name: eureka-server
   cloud:
     inetutils:
+      ignored-interfaces: docker0,eth0
       preferred-networks: 192.168.1. 
       
 eureka:
