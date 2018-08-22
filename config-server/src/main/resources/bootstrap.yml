@@ -1,4 +1,8 @@
 EUREKA_SERVICE_URL: http://172.18.170.101:8761
+security:
+  user:
+    name: "root"
+    password: "chinaway2014"
 server:
   port: 8888
 eureka:
