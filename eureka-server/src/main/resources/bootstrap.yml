@@ -26,4 +26,4 @@ management:
 logging:
   file: "target/${spring.application.name}.log"
   level: 
-    org.springframework.cloud.commons.util: DEBUG
+    org.springframework.cloud: DEBUG
