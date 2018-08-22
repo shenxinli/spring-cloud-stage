@@ -4,15 +4,6 @@ CONFIG_SERVICE_URL: http://192.168.4.83:8888
 
 server:
   port: 9001
-
-eureka:
-  instance:
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-    statusPageUrlPath: /actuator/info      #状态地址
-    healthCheckUrlPath: /actuator/health   #健康检查地址
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
         
 spring:
   application:
@@ -32,12 +23,3 @@ security:
       
 logging:
   file: "target/${spring.application.name}.log"
-  
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: ALWAYS
