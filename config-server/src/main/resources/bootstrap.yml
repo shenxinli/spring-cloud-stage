@@ -25,6 +25,9 @@ management:
 spring:
   application:
     name: config-server
+  cloud:
+    inetutils:
+      preferred-networks: 172.18.170.
 
 logging:
   file: "target/${spring.application.name}.log"

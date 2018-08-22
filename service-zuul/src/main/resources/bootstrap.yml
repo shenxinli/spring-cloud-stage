@@ -5,6 +5,9 @@ spring:
   application:
     name: service-zuul
   cloud:
+  cloud:
+    inetutils:
+      preferred-networks: 172.18.170.
     config:
       name: application
       label: master

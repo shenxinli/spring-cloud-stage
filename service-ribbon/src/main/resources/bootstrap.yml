@@ -5,6 +5,8 @@ spring:
   application:
     name: service-ribbon
   cloud:
+    inetutils:
+      preferred-networks: 172.18.170.
     config:
       name: application
       label: master
