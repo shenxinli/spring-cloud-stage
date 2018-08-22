@@ -10,6 +10,7 @@ server:
 eureka:   #<1>
   instance:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    hostname: ${spring.cloud.client.ip-address}:${server.port}
     statusPageUrlPath: /actuator/info      #状态地址
     healthCheckUrlPath: /actuator/health   #健康检查地址
   client:
