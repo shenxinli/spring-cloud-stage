@@ -6,9 +6,9 @@ spring:
     name: service-ribbon
   cloud:
     config:
-      name: application,datasource
+      name: application
       label: master
-      profile: ${spring.application.name}
+      profile: ${spring.application.name},global-config
       discovery:
         enabled: true
         service-id: config-server
