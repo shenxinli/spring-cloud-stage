@@ -29,8 +29,6 @@ spring:
   application:
     name: admin-server
   cloud:
-    inetutils:
-      preferred-networks: 172.18.170.
     config:
       name: application
       label: master

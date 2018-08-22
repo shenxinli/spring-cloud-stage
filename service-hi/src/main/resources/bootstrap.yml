@@ -23,9 +23,6 @@ management:
 spring:
   application:
     name: service-hi
-  cloud:
-    inetutils:
-      preferred-networks: 172.18.170.    
     config:
       name: application
       label: master
