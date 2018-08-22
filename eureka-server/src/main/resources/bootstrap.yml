@@ -13,10 +13,5 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
-      
-security:
-  user:
-    name: "root"
-    password: "123456"
 logging:
   file: "target/${spring.application.name}.log"       
