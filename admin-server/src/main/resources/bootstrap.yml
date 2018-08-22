@@ -6,7 +6,7 @@ spring:
     name: admin-server
   cloud:
     config:
-      name: application,datasource
+      name: application
       label: master
       profile: ${spring.application.name},base-config
       discovery:
