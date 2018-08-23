@@ -28,6 +28,7 @@ management:
 spring:
   application:
     name: admin-server
+  cloud:
     config:
       name: application
       label: master
