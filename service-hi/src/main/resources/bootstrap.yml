@@ -25,11 +25,11 @@ spring:
     name: service-hi
   cloud:
     config:
-    name: application
-    label: master
-    profile: ${spring.application.name},global-config
-    discovery:
-      enabled: true
-      service-id: config-server
+      name: application
+      label: master
+      profile: ${spring.application.name},global-config
+      discovery:
+        enabled: true
+        service-id: config-server
 logging:
   file: "target/${spring.application.name}.log"
