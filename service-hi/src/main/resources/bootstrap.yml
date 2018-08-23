@@ -30,6 +30,5 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-      
 logging:
   file: "target/${spring.application.name}.log"
