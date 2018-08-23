@@ -1,6 +1,24 @@
 server:
   port: 8080
 
+eureka:   #<1>
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    statusPageUrlPath: /actuator/info      #状态地址
+    healthCheckUrlPath: /actuator/health   #健康检查地址
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #<2>
+  endpoint:
+    health:
+      show-details: ALWAYS
+
 spring:
   application:
     name: service-zuul
@@ -15,3 +33,12 @@ spring:
 
 logging:
   file: "target/${spring.application.name}.log"
+
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign
