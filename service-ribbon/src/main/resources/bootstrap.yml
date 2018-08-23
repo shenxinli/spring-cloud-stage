@@ -23,6 +23,7 @@ management:
 spring:
   application:
     name: service-ribbon
+  cloud:
     config:
       name: application
       label: master
