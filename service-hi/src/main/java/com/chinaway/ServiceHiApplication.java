@@ -1,5 +1,6 @@
 package com.chinaway;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chinaway.config.ServiceInfo;
+
 @SpringBootApplication
 @EnableEurekaClient
 @RestController
 public class ServiceHiApplication {
+	
+	@Autowired
+	private ServiceInfo serviceInfo;
 	
 	public static void main(String[] args) {
         SpringApplication.run( ServiceHiApplication.class, args );
@@ -25,7 +31,8 @@ public class ServiceHiApplication {
 
     @RequestMapping("/hi")
     public String home(@RequestParam(value = "name", defaultValue = "shenxinli") String name) {
-    	StringBuilder sb = new StringBuilder("hi " + name + " ,i am from port:" + port);
+    	StringBuilder sb = new StringBuilder("hi " + name + " ,i am from host is " + 
+    									serviceInfo.getIpAddress() + ":" + serviceInfo.getServerPort());
     	sb.append("<br/>" + scm_url);
         return sb.toString();
     }
