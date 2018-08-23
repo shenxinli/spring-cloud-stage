@@ -28,3 +28,10 @@ spring:
 
 logging:
   file: "target/${spring.application.name}.log"
+  
+spring:
+  rabbitmq:
+    host: 120.79.93.249
+    port: 5673
+    username: shenxinli
+    password: chinaway2014
