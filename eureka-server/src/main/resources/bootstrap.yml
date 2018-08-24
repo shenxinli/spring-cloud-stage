@@ -32,5 +32,3 @@ management:
       show-details: ALWAYS
 logging:
   file: "target/${spring.application.name}.log"
-  level: 
-    org.springframework.cloud: DEBUG
