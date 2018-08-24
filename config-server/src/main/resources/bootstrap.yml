@@ -22,7 +22,7 @@ spring:
   application:
     name: config-server
   rabbitmq:
-    host: 120.79.93.249
+    host: 172.18.170.87
     port: 5673
     username: shenxinli
     password: chinaway2014
