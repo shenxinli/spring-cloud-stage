@@ -25,6 +25,10 @@ spring:
   application:
     name: service-zuul
   cloud:
+    bus:
+      trace:
+        enabled: true
+      enabled: true  
     config:
       name: application-${environment:dev}
       label: master
