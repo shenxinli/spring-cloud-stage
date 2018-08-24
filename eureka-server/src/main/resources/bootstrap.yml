@@ -6,7 +6,11 @@ server:
 spring:
   application:
     name: eureka-server
-        
+  rabbitmq:
+    host: 172.18.170.87
+    port: 5673
+    username: shenxinli
+    password: chinaway2014        
 eureka:
   server:
     responseCacheUpdateInvervalMs: 3000
