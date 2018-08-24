@@ -24,7 +24,7 @@ spring:
     name: service-hi
   cloud:
     config:
-      name: application-${environment}
+      name: application-${environment-dev}
       label: master
       profile: ${spring.application.name},global-config
       discovery:
