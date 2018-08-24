@@ -32,6 +32,9 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
+  bus:
+    trace:
+      enabled: true
   rabbitmq:
     host: 172.18.170.87
     port: 5673
