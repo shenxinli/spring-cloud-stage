@@ -28,7 +28,7 @@ spring:
     config:
       name: application-${environment:dev}
       label: master
-      profile: ${spring.application.name},global-config
+      profiles: ${spring.application.name},global-config
       discovery:
         enabled: true
         service-id: config-server
