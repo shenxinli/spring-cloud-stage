@@ -24,6 +24,8 @@ spring:
     name: config-server
   cloud:
     bus:
+      trace:
+        enabled: true
       enabled: true
   rabbitmq:
     host: 172.18.170.87
