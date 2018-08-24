@@ -22,7 +22,7 @@ import de.codecentric.boot.admin.server.config.EnableAdminServer;
 @EnableDiscoveryClient
 @RefreshScope
 public class AdminServerApplication {
-    private static final Logger log = LoggerFactory.getLogger(AdminServerApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(AdminServerApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(AdminServerApplication.class, args);
