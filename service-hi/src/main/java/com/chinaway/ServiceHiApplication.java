@@ -30,12 +30,16 @@ public class ServiceHiApplication {
     
     @Value("${info.scm-url}")
     String scm_url;
+    
+    @Value("${info.build-url}")
+    String build_url;
 
     @RequestMapping("/hi")
     public String home(@RequestParam(value = "name", defaultValue = "shenxinli") String name) {
     	StringBuilder sb = new StringBuilder("hi " + name + " ,i am from host is " + 
     									serviceInfo.getIpAddress() + ":" + serviceInfo.getServerPort());
-    	sb.append("<br/>" + scm_url);
+    	sb.append("<br/>scm-url is: " + scm_url);
+    	sb.append("<br/>build-url is: " + build_url);
         return sb.toString();
     }
     
