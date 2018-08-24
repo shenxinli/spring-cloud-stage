@@ -22,6 +22,9 @@ management:
 spring:
   application:
     name: config-server
+  cloud:
+    bus:
+      enabled: true
   rabbitmq:
     host: 172.18.170.87
     port: 5673
