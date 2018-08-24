@@ -1,7 +1,7 @@
 security:
   user:
     name: "root"
-    password: "chinaway2014"
+    password: "supperstart"
 ---
 spring:
   profiles:
