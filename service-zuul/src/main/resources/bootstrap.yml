@@ -32,7 +32,11 @@ spring:
       discovery:
         enabled: true
         service-id: config-server
-
+  rabbitmq:
+    host: 172.18.170.87
+    port: 5673
+    username: shenxinli
+    password: chinaway2014 
 logging:
   file: "target/${spring.application.name}.log"
 
