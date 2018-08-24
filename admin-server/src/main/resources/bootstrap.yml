@@ -1,3 +1,7 @@
+security:
+  user:
+    name: "root"
+    password: "chinaway2014"
 server:
   port: 8787
 
