@@ -24,8 +24,8 @@ spring:
     name: service-feign
   cloud:
     config:
-      name: application
-      label: dev
+      name: application-${environment}
+      label: master
       profile: ${spring.application.name},global-config
       discovery:
         enabled: true
