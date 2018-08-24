@@ -3,8 +3,6 @@ spring:
   cloud:
     config:
       enabled: true
-      name: application
-      label: master
       server:
         git:
           uri: https://github.com/shenxinli/config-repo

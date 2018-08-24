@@ -26,8 +26,8 @@ spring:
     name: admin-server
   cloud:
     config:
-      name: application
-      label: master
+      name: application-${environment:dev}
+      label: dev
       profile: ${spring.application.name},global-config
       discovery:
         enabled: true
